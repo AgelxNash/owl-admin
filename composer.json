@@ -18,7 +18,7 @@
     ],
     "suggest": {
         "sleeping-owl/admin-lte-template": "Template for SleepingOwl admin",
-        "agelxnash/seotools": "For use FormItem::anSeo()",
+        "agelxnash/seo-tools": "For use FormItem::anSeo()",
         "barryvdh/laravel-elfinder": "For use FormItem::anMarkitUp() or FormItem::anImage()"
     },
     "require": {
