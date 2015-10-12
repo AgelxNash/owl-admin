@@ -1,0 +1,155 @@
+/* -------------------------------------------------------------------
+// markItUp!
+// By Jay Salvat - http://markitup.jaysalvat.com/
+// ------------------------------------------------------------------*/
+.markItUp .mitup-h1 a {
+    background-image:url(images/text_heading_1.png);
+}
+.markItUp .mitup-h2 a {
+    background-image:url(images/text_heading_2.png);
+}
+.markItUp .mitup-h3 a {
+    background-image:url(images/text_heading_3.png);
+}
+.markItUp .mitup-h4 a {
+    background-image:url(images/text_heading_4.png);
+}
+.markItUp .mitup-h5 a {
+    background-image:url(images/text_heading_5.png);
+}
+.markItUp .mitup-h6 a {
+    background-image:url(images/text_heading_6.png);
+}
+.markItUp .mitup-paragraph a {
+    background-image:url(images/paragraph.png);
+}
+
+.markItUp .mitup-bold a {
+    background-image:url(images/text_bold.png);
+}
+.markItUp .mitup-italic a {
+    background-image:url(images/text_italic.png);
+}
+.markItUp .mitup-stroke a {
+    background-image:url(images/text_strikethrough.png);
+}
+.markItUp .mitup-underline a {
+    background-image:url(images/text_underline.png);
+}
+
+.markItUp .mitup-ul a {
+    background-image:url(images/list-bullet.png);
+}
+.markItUp .mitup-ol a {
+    background-image:url(images/list-numeric.png);
+}
+.markItUp .mitup-li a {
+    background-image:url(images/list-item.png);
+}
+
+.markItUp .mitup-image a {
+    background-image:url(images/picture.png);
+}
+.markItUp .mitup-link a {
+    background-image:url(images/link_add.png);
+}
+
+.markItUp .mitup-clean a {
+    background-image:url(images/clean.png);
+}
+
+.markItUp .mitup-encodechars a {
+    background-image:url(images/script_delete.png);
+}
+
+.markItUp .mitup-tablegenerator a {
+    background-image:url(images/table-q.png);
+}
+
+.markItUp .mitup-table a {
+    background-image:url(images/table.png);
+}
+.markItUp .mitup-table-col a {
+    background-image:url(images/table-col.png);
+}
+.markItUp .mitup-table-row a {
+    background-image:url(images/table-row.png);
+}
+.markItUp .mitup-css a {
+    background-image:url(images/css.png);
+}
+.markItUp .mitup-class a{
+    background-image:url(images/css_add.png);
+}
+
+.markItUp .mitup-alignments a {
+    background-image:url(images/text_align_left.png);
+}
+.markItUp .mitup-alignments .mitup-left a {
+    background-image:url(images/text_align_left.png);
+}
+.markItUp .mitup-alignments .mitup-center a {
+    background-image:url(images/text_align_center.png);
+}
+.markItUp .mitup-alignments .mitup-right a {
+    background-image:url(images/text_align_center.png);
+}
+.markItUp .mitup-alignments .mitup-justify a {
+    background-image:url(images/text_align_justify.png);
+}
+.markItUp .mitup-padding a {
+    background-image:url(images/text_padding_left.png);
+}
+.markItUp .mitup-padding .mitup-left a {
+    background-image:url(images/text_padding_left.png);
+}
+.markItUp .mitup-padding .mitup-top a {
+    background-image:url(images/text_padding_top.png);
+}
+.markItUp .mitup-padding .mitup-right a {
+    background-image:url(images/text_padding_right.png);
+}
+.markItUp .mitup-padding .mitup-bottom a {
+    background-image:url(images/text_padding_bottom.png);
+}
+.markItUp .mitup-quote a{
+    background-image:url(images/quotes.png);
+}
+.markItUp .mitup-code a {
+    background-image:url(images/script_code.png);
+}
+.markItUp .mitup-spelling a {
+    background-image:url(images/spelling.png);
+}
+.markItUp .mitup-spellingoptions a{
+    background-image:url(images/spellingoptions.png);
+}
+
+.markItUp .mitup-fullScreen a{
+    background: transparent url(images/fullscreen.png) no-repeat;
+}
+.markItUp.fullScreen .mitup-fullScreen a{
+    background: transparent url(images/normalscreen.png) no-repeat;
+}
+
+.markItUp.fullScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 9999;
+    margin: 0;
+    background: #f0f0f0;
+    border: 0;
+}
+.markItUp.fullScreen .markItUpContainer{
+    padding: 20px 40px 40px;
+}
+
+.markItUpEditor{
+    width: 100%;
+}
+.markItUp{
+    width: auto;
+}

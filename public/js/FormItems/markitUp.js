@@ -1,0 +1,3 @@
+$(function () {
+    $('.markItUpArea').markItUp(markItUpSettings);
+});

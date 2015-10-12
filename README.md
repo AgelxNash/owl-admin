@@ -1,0 +1,1 @@
+php artisan vendor:publish --provider="AgelxNash\Admin\ServiceProvider" --force

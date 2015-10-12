@@ -1,0 +1,33 @@
+{
+    "name": "agelxnash/owl-admin",
+    "description": "Custom fields for sleeping-owl/admin",
+    "homepage": "http://blog.agel-nash.ru",
+    "keywords": [
+        "laravel",
+        "admin",
+        "administrator",
+        "crud",
+        "template"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Agel_Nash",
+            "email": "iam@agel-nash.ru"
+        }
+    ],
+    "suggest": {
+        "sleeping-owl/admin-lte-template": "Template for SleepingOwl admin",
+        "agelxnash/seotools": "For use FormItem::anSeo()",
+        "barryvdh/laravel-elfinder": "For use FormItem::anMarkitUp() or FormItem::anImage()"
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "sleeping-owl/admin": "dev-development#69f230e"
+    },
+    "autoload": {
+        "psr-4": {
+            "AgelxNash\\Admin": "src/"
+        }
+    }
+}
