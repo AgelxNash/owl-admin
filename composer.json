@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "AgelxNash\\Admin": "src/"
+            "AgelxNash\\Admin\\": "src/"
         }
     }
 }
