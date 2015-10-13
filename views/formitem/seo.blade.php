@@ -1,4 +1,3 @@
-@if($instance->getKey())
     <div class="form-group">
         <label for="seo_h1">Заголовок страницы H1</label>
         <input class="form-control" name="seo[h1]" type="text" id="seo_h1" value="{{ $value->get('h1') }}">
@@ -68,6 +67,3 @@
             </select>
         </div>
     </div>
-@else
-    <p>Остальные seo-параметры будут доступны после сохранения записи.</p>
-@endif

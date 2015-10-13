@@ -4,11 +4,26 @@ use Input;
 use Request;
 use Illuminate\Support\Collection;
 use SleepingOwl\Admin\AssetManager\AssetManager;
-use App\Models\Seo as SeoModel;
-use App\Models\Keyword as KeywordModel;
+use AgelxNash\SEOTools\Models\Seo as SeoModel;
+use AgelxNash\SEOTools\Models\Keyword as KeywordModel;
+use AgelxNash\SEOTools\Interfaces\SeoInterface;
+use \SleepingOwl\Admin\FormItems\BaseFormItem;
 
-Class Seo extends \SleepingOwl\Admin\FormItems\BaseFormItem{
+Class Seo extends BaseFormItem{
 	protected $view = 'seo';
+	/**
+	 * @var SeoModel
+	 */
+	protected $seoModel;
+	/**
+	 * @var KeywordModel
+	 */
+	protected $keyModel;
+
+	public function __construct(SeoModel $seoModel, KeywordModel $keyModel){
+		$this->seoModel = $seoModel;
+		$this->keyModel = $keyModel;
+	}
 
 	public function initialize()
 	{
@@ -43,35 +58,34 @@ Class Seo extends \SleepingOwl\Admin\FormItems\BaseFormItem{
 		}
 		return $out;
 	}
-
+	public function getFiels(){
+		$values = new Collection;
+		foreach($this->seoModel->getFillable() as $fill){
+			if(!in_array($fill, ['document_id', 'document_type'])){
+				$values->offsetSet($fill, null);
+			}
+		}
+		return $values;
+	}
+	public function getDefault(){
+		$instance = $this->instance();
+		return new Collection((is_null($instance) || !$instance instanceof SeoInterface) ? [] : $instance->getDefaultSeoFields());
+	}
 	/**
 	 * @return Collection
 	 */
 	public function values()
 	{
-		$values = new Collection([
-			'title' => null,
-			'description' => null,
-			'robots' => null,//index,follow',
-			'state' => null,//'dynamic',
-			'priority' => null,//'0.5',
-			'frequency' => null,//'daily',
-			'keywords' => null,
-			'h1' => null
-		]);
-		$default = new Collection([
-			'robots' => 'index,follow',
-			'state' => 'dynamic',
-			'priority' => '0,5',
-			'frequency' => 'daily'
-		]);
 		$instance = $this->instance();
+		$values = $this->getFiels();
+		$default = $this->getDefault();
+
 		$request = Request::old('seo', []);
 		$input = get_key(Input::all(), 'seo', [], 'is_array');
 		$options = $this->options();
 
 		foreach($values as $key => $val){
-			$values->offsetSet($key, $default->get($key));
+			$val = $default->get($key);
 			switch(true){
 				case array_key_exists($key, $request):{
 					$val = get_key($request, $key, '', function($val) use($options, $key){
@@ -111,7 +125,6 @@ Class Seo extends \SleepingOwl\Admin\FormItems\BaseFormItem{
 		}
 		return $values;
 	}
-
 	public function save(){
 		$values = $this->values();
 		if ($this->instance()->exists()) {
@@ -120,23 +133,20 @@ Class Seo extends \SleepingOwl\Admin\FormItems\BaseFormItem{
 			$keys = is_array($keys) ? $keys : [];
 			$keys = array_clean(array_map('trim', $keys), array('', 0, null));
 
-			//$values->forget('keywords');
 			foreach ($keys as &$key) {
-				$key = \App\Models\Keyword::firstOrCreate(['name' => $key])->getKey();
+				$key = $this->keyModel->firstOrCreate(['name' => $key])->getKey();
 			}
 			$values->offsetSet('keywords', $keys);
-			$values->offsetSet('priority', str_replace(",", ".", $values->offsetGet('priority')));
+			$values->offsetSet('priority', str_replace(",", ".", $values->get('priority')));
 			$this->instance()->seo = $values->toArray();
 		}
 	}
-
 	public function render()
 	{
 		$params = $this->getParams();
 
 		return view('an-admin::formitem.' . $this->view, $params)->render();
 	}
-
 	public function getValidationRules()
 	{
 		$rule = 'seo_keywords';
