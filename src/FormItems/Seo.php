@@ -1,5 +1,6 @@
 <?php namespace AgelxNash\Admin\FormItems;
 
+use Illuminate\Database\Eloquent\Model;
 use Input;
 use Request;
 use Illuminate\Support\Collection;
@@ -79,7 +80,6 @@ Class Seo extends BaseFormItem{
 		$instance = $this->instance();
 		$values = $this->getFiels();
 		$default = $this->getDefault();
-
 		$request = Request::old('seo', []);
 		$input = get_key(Input::all(), 'seo', [], 'is_array');
 		$options = $this->options();
@@ -131,7 +131,8 @@ Class Seo extends BaseFormItem{
 			$keys = $values->get('keywords');
 			$keys = (is_scalar($keys)) ? explode(',', $keys) : $keys;
 			$keys = is_array($keys) ? $keys : [];
-			$keys = array_clean(array_map('trim', $keys), array('', 0, null));
+
+			$keys = array_diff(array_map('trim', $keys), array('', 0, null));
 
 			foreach ($keys as &$key) {
 				$key = $this->keyModel->firstOrCreate(['name' => $key])->getKey();
@@ -139,6 +140,10 @@ Class Seo extends BaseFormItem{
 			$values->offsetSet('keywords', $keys);
 			$values->offsetSet('priority', str_replace(",", ".", $values->get('priority')));
 			$this->instance()->seo = $values->toArray();
+			$seo = $this->instance()->seo()->first();
+			if($seo instanceof Model) {
+				$seo->save();
+			}
 		}
 	}
 	public function render()
