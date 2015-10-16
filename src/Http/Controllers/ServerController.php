@@ -23,7 +23,7 @@ class ServerController extends Controller {
 				return $phpinfo;
 			}
 			default:{
-			$view = View::make('admin::page.server', [
+			$view = View::make('an-admin::page.server', [
 				'ezc' => ezcSystemInfo::getInstance(),
 				'tableStatus' => DB::select(
 					"SHOW TABLE STATUS FROM `".config('database.connections.mysql.database')."` LIKE '".config('database.connections.mysql.prefix')."%'"
