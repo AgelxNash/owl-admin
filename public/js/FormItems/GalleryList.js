@@ -3,6 +3,7 @@ $(function ()
     $('.imageUploadMultiple').each(function (index, item)
     {
         var $item = $(item);
+        var RenderPhotoTpl = $item.find('.RenderPhoto').first().html();
         var $group = $item.closest('.form-group');
         var $innerGroup = $item.find('.form-group');
         var $errors = $item.find('.errors');
@@ -21,23 +22,16 @@ $(function ()
             $item.find('.thumbnail').each(function (index, thumb) {
                 var $thumb = $(thumb);
                 var src = $($thumb.find('img[data-src]')[0]).data('src');
-                var url = $($thumb.find('input[type=url]')[0]).val();
-                values.push({src: src, url: url});
-            })
-            console.log('updated');
+                var title = $($thumb.find('input[type=title]')[0]).val();
+                values.push({src: src, title: title});
+            });
             $input.val(JSON.stringify(values));
         };
-        var urlItem = function (thumb, src, url) {
-            var a = '';
-            var url = url || '';
-            a += '<div class="col-xs-6 col-md-3 imageThumbnail">';
-            a += '<div class="thumbnail">';
-            a += '<img data-src="'+src+'" src="/'+src+'" />';
-            a += '<input class="form-control dataUrl" placeholder="Link" type="url" value="'+url+'"/>';
-            a += '<a href="#" class="imageRemove">&times;</a>';
-            a += '</div>';
-            a += '</div>';
-            return a;
+        var urlItem = function (src, url) {
+            return renderTPL(RenderPhotoTpl, {
+                src: src,
+                url: url || ''
+            });
         };
         flow.assignBrowse($item.find('.imageBrowse'));
         flow.on('filesSubmitted', function(file) {
@@ -51,7 +45,7 @@ $(function ()
 
             var result = $.parseJSON(message);
 
-            $innerGroup.append( urlItem(result.url, result.value) );
+            $innerGroup.append( urlItem(result.value, result.url) );
             updateValue();
         });
         flow.on('fileError', function(file, message){

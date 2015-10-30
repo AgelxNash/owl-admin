@@ -39,6 +39,7 @@ class GalleryList extends Image
 	protected $view = 'gallerylist';
 	public function initialize()
 	{
+		AssetManager::addScript(asset('packages/agelxnash/admin/js/helpers.js'));
 		AssetManager::addScript(asset('packages/agelxnash/admin/js/FormItems/GalleryList.js'));
 		AssetManager::addScript('admin::default/js/formitems/image/flow.min.js');
 		AssetManager::addScript('admin::default/js/formitems/image/Sortable.min.js');
