@@ -23,7 +23,7 @@
     },
     "require": {
         "php": ">=5.4.0",
-        "sleeping-owl/admin": "dev-development#69f230e"
+        "sleeping-owl/admin": "dev-development"
     },
     "autoload": {
         "psr-4": {
