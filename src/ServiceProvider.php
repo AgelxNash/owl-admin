@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider as BaseProvider;
 use SleepingOwl\Admin\FormItems\FormItem;
+use SleepingOwl\Admin\Display\AdminDisplay;
 use Route;
 
 class ServiceProvider extends BaseProvider
@@ -17,6 +18,7 @@ class ServiceProvider extends BaseProvider
 		FormItem::register('anMarkitUp', 'AgelxNash\Admin\FormItems\MarkitUp');
 		FormItem::register('anImage', 'AgelxNash\Admin\FormItems\Image');
 
+		AdminDisplay::register('datatablesSearchAsync', '\AgelxNash\Admin\Display\DatatablesSearchAsync');
 		$routesFile = __DIR__ . '/Http/routes.php';
 		if (file_exists($routesFile)) require $routesFile;
 	}
