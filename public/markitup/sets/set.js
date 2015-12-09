@@ -46,6 +46,11 @@ var markItUpSettings = {
             closeWith : '</a>',
             placeHolder : ''
         }, {
+            name : "Файл",
+            key : 'F',
+            className : 'mitup-file',
+            call : 'markitupElfinderFile'
+        }, {
             separator : '---------------'
         }, {
             name : "H1",
@@ -96,6 +101,11 @@ var markItUpSettings = {
             className : 'mitup-quote',
             openWith : '<blockquote>',
             closeWith : '</blockquote>'
+        }, {
+            name : "Noindex",
+            className : 'mitup-noindex',
+            openWith : '<noindex>',
+            closeWith : '</noindex>'
         }, {
             separator : '---------------'
         }, {

@@ -53,6 +53,12 @@
 .markItUp .mitup-link a {
     background-image:url(images/link_add.png);
 }
+.markItUp .mitup-file a{
+    background:transparent url(images/file_extension_doc.png) no-repeat;
+}
+.markItUp .mitup-noindex a {
+    background:transparent url(images/configure_customer_contacts.png) no-repeat;
+}
 
 .markItUp .mitup-clean a {
     background-image:url(images/clean.png);

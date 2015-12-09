@@ -13,26 +13,45 @@ $(document).on('click','.popup_selector',function (event) {
         height: '50%'
     });
 });
-function markitupElfinder(){
-    var updateId = '_markitUp';
-    var elfinderUrl = '/elfinder/popup/';
+var anMarkitUp = {
+	Elfinder: function(updateId){
+		var elfinderUrl = '/elfinder/popup/';
 
-    // trigger the reveal modal with elfinder inside
-    var triggerUrl = elfinderUrl + updateId;
-    $.colorbox({
-        href: triggerUrl,
-        fastIframe: true,
-        iframe: true,
-        width: '70%',
-        height: '50%'
-    });
+		// trigger the reveal modal with elfinder inside
+		var triggerUrl = elfinderUrl + updateId;
+		$.colorbox({
+			href: triggerUrl,
+			fastIframe: true,
+			iframe: true,
+			width: '70%',
+			height: '50%'
+		});
+	}
+};
+
+function markitupElfinderFile(){
+   anMarkitUp.Elfinder('_markitUpFile');
 }
+function markitupElfinder(){
+    anMarkitUp.Elfinder('_markitUp');
+}
+
 // function to update the file selected by elfinder
 function processSelectedFile(filePath, requestingField) {
-    if(requestingField == '_markitUp') {
-        if (typeof $.fn.markItUp !== 'undefined') $.markItUp({replaceWith: '<img src="' + filePath +'" alt="[![Описание]!]" />'});
-    } else {
-        $("#" + requestingField).val(filePath);
-        $("#" + requestingField + 'Src').attr('src', '/' + filePath).parent().show();
+    switch(requestingField){
+        case '_markitUp':{
+            if (typeof $.fn.markItUp !== 'undefined') $.markItUp({replaceWith: '<img src="/' + filePath +'" alt="[![Описание]!]" />'});
+            break;
+        }
+        case '_markitUpFile':{
+            if (typeof $.fn.markItUp !== 'undefined'){
+                $.markItUp({replaceWith: '<a href="/' + filePath +'" title="[![Описание]!]" />[![Текст ссылки]!]</a>'});
+            }
+            break;
+        }
+        default:{
+            $("#" + requestingField).val(filePath);
+            $("#" + requestingField + 'Src').attr('src', '/' + filePath).parent().show();
+        }
     }
 }
