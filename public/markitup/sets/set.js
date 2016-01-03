@@ -273,20 +273,16 @@ var markItUpSettings = {
             className: 'mitup-fullScreen',
             key: "F",
             call: function(){
-                if ($('.markItUp').hasClass('fullScreen')) {
-                    $('.markItUp').removeClass('fullScreen');
-                    $('#markItUp').css(
-                        'height',
-                        markItUpTextareaOGHeight + "px"
-                    );
-                }
-                else {
-                    markItUpTextareaOGHeight = $('#markItUp').innerHeight();
-                    $('.markItUp').addClass('fullScreen');
-                    $('.markItUp.fullScreen #markItUp').css(
-                        'height',
-                        ($('.markItUp.fullScreen').innerHeight() - 90) + "px"
-                    );
+                var $this = $(this.document.activeElement).parents('.markItUp');
+
+                if($this.hasClass('fullScreen')) {
+                    $this.removeClass('fullScreen');
+                    $('.markItUpContainer', $this).css('height', 'auto');
+                    $('.markItUpEditor', $this).css('height', 'auto');
+                } else {
+                    $this.addClass('fullScreen');
+                    $('.markItUpContainer', $this).css('height', '100%');
+                    $('.markItUpEditor', $this).css('height', '100%');
                 }
             }
         }
