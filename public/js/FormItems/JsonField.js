@@ -14,7 +14,7 @@ $(function ()
             $item.find('fieldset').each(function (index, thumb) {
                 var $thumb = $(thumb), data = {};
                 $thumb.find('input.dataUrl').each(function(){
-                    var key = $(this).attr('type');
+                    var key = $(this).data('name');
                     data[key] = $(this).val();
                 });
                 values.push(data);

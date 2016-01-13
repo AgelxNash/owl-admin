@@ -13,7 +13,7 @@
                             <label for="dynamic-field-{{ $name }}-<%=num%>-{{ $field_name }}" class="col-sm-1 control-label"><small>{{ $field_label }}</small></label>
                             <div class="col-sm-11">
                                 @if(get_key($field, 'type', 'input', 'is_scalar') == 'input')
-                                    <input class="form-control dataUrl" id="dynamic-field-{{ $name }}-<%=num%>-{{ $field_name }}" placeholder="{{ $field_label }}" type="{{ $field_name }}" value=""/>
+                                    <input class="form-control dataUrl" id="dynamic-field-{{ $name }}-<%=num%>-{{ $field_name }}" placeholder="{{ $field_label }}" data-name="{{ $field_name }}" value=""/>
                                 @endif
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                                 <label for="dynamic-field-{{ $name }}-{{$num}}-{{ $field_name }}" class="col-sm-1 control-label"><small>{{ $field_label }}</small></label>
                                 <div class="col-sm-11">
                                     @if(get_key($field, 'type', 'input', 'is_scalar') == 'input')
-                                        <input class="form-control dataUrl" id="dynamic-field-{{ $name }}-{{$num}}-{{ $field_name }}" placeholder="{{ $field_label }}" type="{{ $field_name }}" value="{{ $data->$field_name or '' }}"/>
+                                        <input class="form-control dataUrl" id="dynamic-field-{{ $name }}-{{$num}}-{{ $field_name }}" placeholder="{{ $field_label }}" data-name="{{ $field_name }}" value="{{ $data->$field_name or '' }}"/>
                                     @endif
                                 </div>
                             </div>

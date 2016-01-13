@@ -26,7 +26,7 @@ $(function ()
                         src: $($thumb.find('img[data-src]')[0]).data('src')
                     };
                 $thumb.find('input.dataUrl').each(function(){
-                    var key = $(this).attr('type');
+                    var key = $(this).data('name');
                     data[key] = $(this).val();
                 });
                 values.push(data);
