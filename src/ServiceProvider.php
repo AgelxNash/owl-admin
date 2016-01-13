@@ -9,16 +9,17 @@ class ServiceProvider extends BaseProvider
 {
 	public function register()
 	{
-		FormItem::register('anOneSelect', 'AgelxNash\Admin\FormItems\oneSelect');
-		FormItem::register('anSelect', 'AgelxNash\Admin\FormItems\Select');
-		FormItem::register('anSeo', 'AgelxNash\Admin\FormItems\Seo');
-		FormItem::register('anJsonField', 'AgelxNash\Admin\FormItems\JsonField');
-		FormItem::register('anGalleryList', 'AgelxNash\Admin\FormItems\GalleryList');
-		FormItem::register('anVideoList', 'AgelxNash\Admin\FormItems\VideoList');
-		FormItem::register('anMarkitUp', 'AgelxNash\Admin\FormItems\MarkitUp');
-		FormItem::register('anImage', 'AgelxNash\Admin\FormItems\Image');
-
-		AdminDisplay::register('datatablesSearchAsync', '\AgelxNash\Admin\Display\DatatablesSearchAsync');
+		FormItem::register('anOneSelect', FormItems\oneSelect::class);
+		FormItem::register('anSelect', FormItems\Select::class);
+		FormItem::register('anSeo', FormItems\Seo::class);
+		FormItem::register('anJsonField', FormItems\JsonField::class);
+		FormItem::register('anGalleryList', FormItems\GalleryList::class);
+		FormItem::register('anVideoList', FormItems\VideoList::class);
+		FormItem::register('anMarkitUp', FormItems\MarkitUp::class);
+		FormItem::register('anImage', FormItems\Image::class);
+		FormItem::register('yaMap', FormItems\YaMap::class);
+		
+		AdminDisplay::register('datatablesSearchAsync', Display\DatatablesSearchAsync::class);
 		$routesFile = __DIR__ . '/Http/routes.php';
 		if (file_exists($routesFile)) require $routesFile;
 	}
