@@ -21,23 +21,29 @@ use Input;
 class JsonField extends NamedFormItem
 {
 	protected $view = 'jsonfield';
+	protected $fields = array();
 	public function initialize()
 	{
+		AssetManager::addScript(asset('packages/agelxnash/admin/js/helpers.js'));
 		AssetManager::addScript(asset('packages/agelxnash/admin/js/FormItems/JsonField.js'));
 		AssetManager::addScript('admin::default/js/formitems/image/Sortable.min.js');
 		AssetManager::addScript('admin::default/js/formitems/image/sortable.jquery.binding.js');
-		// AssetManager::addStyle('admin::default/css/formitems/image/images.css');
+		AssetManager::addStyle(asset('packages/agelxnash/admin/css/FormItems/JsonField.css'));
+	}
+	public function addField(array $data = array())
+	{
+		$this->fields[] = $data;
+		return $this;
+	}
+
+	public function getParams()
+	{
+		return parent::getParams() + [
+			'fields'  => $this->fields
+		];
 	}
 	public function render () {
-		$params = $this->getParams();
-		return view('an-admin::formitem.'.$this->view, $params)->render();
-	}
-	public function save()
-	{
-		$name = $this->name();
-		$value = Input::get($name, '');
-		Input::merge([$name => $value]);
-		parent::save();
+		return view('an-admin::formitem.'.$this->view, $this->getParams())->render();
 	}
 	public function value()
 	{

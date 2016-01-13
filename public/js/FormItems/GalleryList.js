@@ -4,8 +4,8 @@ $(function ()
     {
         var $item = $(item);
         var RenderPhotoTpl = $item.find('.RenderPhoto').first().html();
-        var $group = $item.closest('.form-group');
-        var $innerGroup = $item.find('.form-group');
+        var $group = $item.closest('.images-group');
+        var $innerGroup = $item.find('.images-group');
         var $errors = $item.find('.errors');
         var $input = $item.find('.imageValue');
         var flow = new Flow({
@@ -19,18 +19,25 @@ $(function ()
         var updateValue = function ()
         {
             var values = [];
+            var data = {};
             $item.find('.thumbnail').each(function (index, thumb) {
-                var $thumb = $(thumb);
-                var src = $($thumb.find('img[data-src]')[0]).data('src');
-                var title = $($thumb.find('input[type=title]')[0]).val();
-                values.push({src: src, title: title});
+                var $thumb = $(thumb),
+                    data = {
+                        src: $($thumb.find('img[data-src]')[0]).data('src')
+                    };
+                $thumb.find('input.dataUrl').each(function(){
+                    var key = $(this).attr('type');
+                    data[key] = $(this).val();
+                });
+                values.push(data);
             });
             $input.val(JSON.stringify(values));
         };
         var urlItem = function (src, url) {
             return renderTPL(RenderPhotoTpl, {
                 src: src,
-                url: url || ''
+                url: url || '',
+                num: (new Date).getTime()
             });
         };
         flow.assignBrowse($item.find('.imageBrowse'));

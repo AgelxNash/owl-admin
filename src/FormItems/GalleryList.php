@@ -37,6 +37,7 @@ use SleepingOwl\Admin\AssetManager\AssetManager;
 class GalleryList extends Image
 {
 	protected $view = 'gallerylist';
+	protected $fields = array();
 	public function initialize()
 	{
 		AssetManager::addScript(asset('packages/agelxnash/admin/js/helpers.js'));
@@ -45,32 +46,24 @@ class GalleryList extends Image
 		AssetManager::addScript('admin::default/js/formitems/image/Sortable.min.js');
 		AssetManager::addScript('admin::default/js/formitems/image/sortable.jquery.binding.js');
 		AssetManager::addStyle('admin::default/css/formitems/image/images.css');
+		AssetManager::addStyle(asset('packages/agelxnash/admin/css/FormItems/GalleryList.css'));
 	}
 	public function render () {
-		$params = $this->getParams();
-		// $tipo = typeof $params;
-		// $values = [];
-		// return var_dump($values);
-		// return var_dump($params['value']);
-		// $params['value'] = ;
-		return view('an-admin::formitem.'.$this->view, $params)->render();
+		return view('an-admin::formitem.'.$this->view, $this->getParams())->render();
 	}
-	public function save()
+	public function addField(array $data = array())
 	{
-		// $name = $this->name();s
-		// $value = Input::get($name, '');
-		// throw new Exception(var_dump($value), 1);
-
-		// if ( ! empty($value))
-		// {
-		// 	$value = explode(',', $value);
-		// } else
-		// {
-		// 	$value = [];
-		// }
-		// Input::merge([$name => $value]);
-		parent::save();
+		$this->fields[] = $data;
+		return $this;
 	}
+
+	public function getParams()
+	{
+		return parent::getParams() + [
+			'fields'  => $this->fields
+		];
+	}
+
 	public function value()
 	{
 		$value = parent::value();

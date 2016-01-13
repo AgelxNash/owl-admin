@@ -1,0 +1,21 @@
+.imageUploadMultiple {
+}
+
+.imageUploadMultiple .images-group{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.imageUploadMultiple .images-group .imageThumbnail .imageRemove {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+}

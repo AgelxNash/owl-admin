@@ -14,7 +14,6 @@ class ServiceProvider extends BaseProvider
 		FormItem::register('anSeo', FormItems\Seo::class);
 		FormItem::register('anJsonField', FormItems\JsonField::class);
 		FormItem::register('anGalleryList', FormItems\GalleryList::class);
-		FormItem::register('anVideoList', FormItems\VideoList::class);
 		FormItem::register('anMarkitUp', FormItems\MarkitUp::class);
 		FormItem::register('anImage', FormItems\Image::class);
 		FormItem::register('yaMap', FormItems\YaMap::class);

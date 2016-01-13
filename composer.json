@@ -19,11 +19,14 @@
     "suggest": {
         "sleeping-owl/admin-lte-template": "Template for SleepingOwl admin",
         "agelxnash/seo-tools": "For use FormItem::anSeo()",
-        "barryvdh/laravel-elfinder": "For use FormItem::anMarkitUp() or FormItem::anImage()"
+        "barryvdh/laravel-elfinder": "For use FormItem::anMarkitUp() or FormItem::anImage()",
+        "rap2hpoutre/laravel-log-viewer": "For view errors",
+        "zetacomponents/system-information": "For view system information"
     },
     "require": {
         "php": ">=5.4.0",
-        "sleeping-owl/admin": "dev-development"
+        "sleeping-owl/admin": "dev-development",
+        "agelxnash/functions": "dev-master"
     },
     "autoload": {
         "psr-4": {
