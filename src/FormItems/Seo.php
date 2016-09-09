@@ -84,23 +84,23 @@ Class Seo extends BaseFormItem{
 		$input = get_key(Input::all(), 'seo', [], 'is_array');
 		$options = $this->options();
 
-		foreach($values as $key => $val){
-			$val = $default->get($key);
-			switch(true){
-				case array_key_exists($key, $request):{
-					$val = get_key($request, $key, '', function($val) use($options, $key){
-						$out = true;
-						if($options->offsetExists($key)){
-							$opt = $options->get($key);
-							if(is_array($opt) && !in_array($val, $opt)) {
-								$out = false;
-							}
-						}
-						return $out;
-					});
-					break;
-				}
-				case (is_null($val) && array_key_exists($key, $input)):{
+        foreach($values as $key => $val){
+            $val = $default->get($key);
+            switch(true){
+                case is_null($val) && array_key_exists($key, $request):{
+                    $val = get_key($request, $key, '', function($val) use($options, $key){
+                        $out = true;
+                        if($options->offsetExists($key)){
+                            $opt = $options->get($key);
+                            if(is_array($opt) && !in_array($val, $opt)) {
+                                $out = false;
+                            }
+                        }
+                        return $out;
+                    });
+                    break;
+                }
+				case array_key_exists($key, $input):{
 					$val = get_key($input, $key, '', function($val) use($options, $key){
 						$out = true;
 						if($options->offsetExists($key)){
@@ -113,7 +113,7 @@ Class Seo extends BaseFormItem{
 					});
 					break;
 				}
-				case (is_null($val) && !is_null($instance) && !is_null($instance->seo) && !is_null($instance->seo->$key)): {
+                case (is_null($val) && !is_null($instance) && !is_null($instance->seo) && !is_null($instance->seo->$key)): {
 					$val = $instance->seo->$key;
 					if($val instanceof \Illuminate\Database\Eloquent\Collection){
 						$val = $val->implode('name', ',');
