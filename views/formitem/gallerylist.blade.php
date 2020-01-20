@@ -33,7 +33,7 @@
 					    <div class="form-group">
 					        <label for="dynamic-field-{{ $name }}-{{$num}}-{{ $field_name }}" class="control-label"><small>{{ $field_label }}</small></label>
 						    @if(get_key($field, 'type', 'input', 'is_scalar') == 'input')
-                                <input class="form-control dataUrl" id="dynamic-field-{{ $name }}-{{$num}}-{{ $field_name }}" placeholder="{{ $field_label }}" data-name="{{ $field_name }}" value="{{ $image->$field_name or '' }}"/>
+                                <input class="form-control dataUrl" id="dynamic-field-{{ $name }}-{{$num}}-{{ $field_name }}" placeholder="{{ $field_label }}" data-name="{{ $field_name }}" value="{{ $image->$field_name ?? '' }}"/>
 					        @endif
 				        </div>
 				    @endforeach
